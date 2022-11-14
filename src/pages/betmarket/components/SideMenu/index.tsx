@@ -10,7 +10,8 @@ const offers = data[0];
 const { tags, menuTags } = offers;
 
 const SideMenu = () => {
-  const { filterBySideTags, setFilterBySideTags } = useBetmarketContext();
+  const { filterBySideTags, setFilterBySideTags, menuIsOpen, setMenuIsOpen } = useBetmarketContext();
+  console.log(menuIsOpen, 'davai gamodi')
 
   const onChange = (e: CheckboxChangeEvent, value: number) => {
     setFilterBySideTags((v) =>
@@ -28,7 +29,7 @@ const SideMenu = () => {
   }));
 
   return (
-    <S.Container>
+    <S.Container className={menuIsOpen ? 'menuIsOpen' : ''}>
       <Menu
         onOpenChange={(e) =>
           setFilterBySideTags(

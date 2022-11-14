@@ -8,6 +8,7 @@ type FilterBySearchType = string;
 type SortBy = "AZ" | "ZA" | "PRICE_UP" | "PRICE_DOWN";
 type FilterByRangeType = [number, number];
 type FilterBySideTags = number[];
+type MenuIsOpen = boolean;
 
 type SetState<S> = React.Dispatch<React.SetStateAction<S>>;
 
@@ -25,6 +26,8 @@ export type BetmarketContextType = {
   setFilterByRange: SetState<FilterByRangeType>;
   filterBySideTags: FilterBySideTags;
   setFilterBySideTags: SetState<FilterBySideTags>;
+  menuIsOpen: MenuIsOpen;
+  setMenuIsOpen: SetState<MenuIsOpen>
 };
 
 export const BetmarketContext = React.createContext<BetmarketContextType>(
@@ -49,6 +52,8 @@ const BetmarketProvider: React.FC = (props) => {
   ]);
   const [filterBySideTags, setFilterBySideTags] =
     React.useState<FilterBySideTags>([]);
+  const [menuIsOpen, setMenuIsOpen] =
+    React.useState<MenuIsOpen>(false);
 
   /**
    * @description data manipulations | filtering
@@ -134,6 +139,8 @@ const BetmarketProvider: React.FC = (props) => {
         setFilterByRange,
         filterBySideTags,
         setFilterBySideTags,
+        menuIsOpen,
+        setMenuIsOpen
       }}
     >
       {props.children}

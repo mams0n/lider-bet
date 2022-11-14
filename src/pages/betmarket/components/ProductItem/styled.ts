@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const ProductItemContainer = styled.div`
   margin: 0.7%;
@@ -15,7 +15,7 @@ export const ProductItemContainer = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
     box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  background: url("https://staticdata.lider-bet.com/images/market/10500.png");
+  background: url('https://staticdata.lider-bet.com/images/market/10500.png');
 
   :hover {
     .title {
@@ -57,7 +57,7 @@ export const ProductItemContainer = styled.div`
       transition: all 0.1s cubic-bezier(0, -0.04, 0.36, -0.73);
     }
   }
-`;
+`
 
 export const ProductItemInner = styled.div`
   z-index: 1;
@@ -77,7 +77,7 @@ export const ProductItemInner = styled.div`
     background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
-`;
+`
 
 export const Prize = styled.div`
   z-index: 2;
@@ -91,19 +91,19 @@ export const Prize = styled.div`
   justify-content: center;
   text-transform: uppercase;
   transition: all 0.1s ease;
-`;
+`
 
 export const Title = styled.div`
   opacity: 1;
   position: absolute;
-  margin-top: 110px;
+  margin-top: 120px;
   color: #ffffff;
   display: block;
   font-size: 14px;
   font-weight: bold;
   position: absolute;
   /* transition: all 0.3s ease; */
-`;
+`
 
 export const Price = styled.div`
   left: 0;
@@ -134,10 +134,9 @@ export const Price = styled.div`
     border-radius: 3px;
     background: #c83800;
   }
-`;
+`
 
 export const ButtonsContainer = styled.div`
-  /* width: 100%; */
   opacity: 0;
   height: 0;
   width: 100%;
@@ -167,7 +166,7 @@ export const ButtonsContainer = styled.div`
       background: #0096e6;
     }
   }
-`;
+`
 
 export const Button = styled.div`
   width: 100%;
@@ -181,7 +180,7 @@ export const Button = styled.div`
   justify-content: center;
   text-align: center;
   transition: opacity 0.1s ease-out;
-`;
+`
 
 export const Discount = styled.div`
   top: 0;
@@ -198,18 +197,18 @@ export const Discount = styled.div`
   justify-content: center;
   background: #c83800;
   transition: all 0.1s ease;
-`;
+`
 
 export const Date = styled.div`
   display: flex;
   align-items: center;
   gap: 3px;
-`;
+`
 
 export const Percent = styled.div`
   font-weight: bold;
   font-size: 20px;
-`;
+`
 
 export const Description = styled.div`
   opacity: 0;
@@ -219,4 +218,4 @@ export const Description = styled.div`
   flex-direction: row;
   transition: all 0.1s ease;
   justify-content: flex-start;
-`;
+`

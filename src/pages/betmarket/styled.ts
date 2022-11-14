@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -6,10 +6,16 @@ export const Wrapper = styled.div`
   margin: auto;
   display: flex;
   gap: 20px;
-`;
+  .menuIsOpen {
+    @media only screen and (max-width: 1000px) {
+      display: block;
+      transition: all 0.3s ease;
+    }
+  }
+`
 
 export const ProductsContainer = styled.div`
   width: 100%;
   height: 100vh;
   overflow: auto;
-`;
+`

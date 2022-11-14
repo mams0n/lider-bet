@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Input } from "antd";
+import styled from 'styled-components'
+import { Input } from 'antd'
 
 export const FilterBarContainer = styled.div`
   position: sticky;
@@ -22,14 +22,15 @@ export const FilterBarContainer = styled.div`
   @media only screen and (max-width: 1366px) {
     font-size: 13px;
   }
-  @media only screen and (max-width: 1366px) {
+  @media only screen and (max-width: 1000px) {
     padding: 0;
+    gap: 0;
   }
 
   svg {
     cursor: pointer;
   }
-`;
+`
 
 export const TogglerContainer = styled.div`
   display: flex;
@@ -39,7 +40,10 @@ export const TogglerContainer = styled.div`
   p {
     margin: 0;
   }
-`;
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
+`
 
 export const FilterItemsConteiner = styled.div`
   font-family: unset !important;
@@ -51,7 +55,7 @@ export const FilterItemsConteiner = styled.div`
   @media only screen and (max-width: 1000px) {
     display: none;
   }
-`;
+`
 
 export const CInput = styled(Input)`
   width: 100%;
@@ -75,7 +79,7 @@ export const CInput = styled(Input)`
     margin: 0;
     justify-content: flex-end;
   }
-`;
+`
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -86,9 +90,30 @@ export const SearchContainer = styled.div`
   @media only screen and (max-width: 1000px) {
     display: none;
   }
-`;
+`
 
 export const MobileNavFirstSegment = styled.div`
+  display: none;
+  @media only screen and (max-width: 1000px) {
+    border-radius: 0;
+    padding: 8px 16px;
+    display: flex !important;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    color: #000000;
+    flex-wrap: wrap;
+    position: sticky;
+    border-radius: 3px;
+    flex-direction: row;
+    align-items: center;
+    background-color: #e3e8f1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+`
+
+export const MobileNavSecondSegment = styled.div`
   display: none;
   @media only screen and (max-width: 1000px) {
     border-radius: 0;
@@ -108,7 +133,7 @@ export const MobileNavFirstSegment = styled.div`
     background-color: #e3e8f1;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
-`;
+`
 
 export const MenuContainer = styled.div`
   display: flex;
@@ -117,11 +142,77 @@ export const MenuContainer = styled.div`
   span {
     margin-top: 2px;
   }
-`;
+`
 
 export const MobileSearchContainer = styled.div`
   display: flex;
   flex: 1;
   margin: 0;
   justify-content: flex-end;
-`;
+`
+
+export const TogglerMobileContainer = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  margin-left: 50px;
+  justify-content: flex-start;
+  p {
+    margin: 0;
+  }
+  @media only screen and (max-width: 1000px) {
+    margin: 0;
+  }
+`
+
+export const SelectContainer = styled.div`
+  display: none;
+  .ant-select {
+    width: 100%;
+    color: #000000;
+    font-size: 13px;
+    overflow: hidden;
+    font-weight: bold;
+    position: relative;
+    margin: 0 16px 0 0;
+    background: #ffffff;
+    border-radius: 4px;
+  }
+  .ant-select-selector {
+    border: none !important;
+    color: #000000 !important;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border: none;
+    border-right-width: none !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+  }
+  .ant-select-single.ant-select-open .ant-select-selection-item {
+    color: #000000 !important;
+  }
+  .ant-select-arrow {
+    color: black;
+  }
+  .ant-select-item-option {
+    padding: 0;
+  }
+  @media only screen and (max-width: 1000px) {
+    display: block;
+    width: 110px;
+  }
+`
+
+export const MobileSorterContainer = styled.div`
+  display: none;
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+`

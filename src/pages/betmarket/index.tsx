@@ -7,7 +7,7 @@ import * as S from "./styled";
 
 export type BetmarketProps = {};
 
-const Betmarket: React.FC = () => {
+const Betmarket: React.FC = (props) => {
   return (
     <BetmarketProvider>
       <S.Wrapper>

@@ -1,6 +1,6 @@
 import CIcon from "../../../../components/Icon/Icon";
 import { data } from "../../../../database/data";
-import { Checkbox, Switch, Tooltip } from "antd";
+import { Checkbox, Switch, Tooltip, Select } from "antd";
 import React from "react";
 import Sorter from "../Sorter";
 import * as S from "./styled";
@@ -17,6 +17,8 @@ const FilterBar: React.FC = () => {
     filterByCurrency,
     setFilterByCurrency,
     setFilterBySearch,
+    menuIsOpen,
+    setMenuIsOpen
   } = useBetmarketContext();
   const { GEL, LBP } = currencies;
 
@@ -32,6 +34,25 @@ const FilterBar: React.FC = () => {
   React.useEffect(() => {
     setFilterBySearch(debouncedSearchValue.toLowerCase());
   }, [debouncedSearchValue]);
+
+  const options = [
+    {
+      value: 'ყველა',
+      label: 'ყველა',
+    },
+    {
+      value: 'top',
+      label: 'TOP',
+    },
+    {
+      value: 'bonus',
+      label: 'BONUS',
+    },
+    {
+      value: 'freespin',
+      label: 'FREESPIN',
+    },
+  ]
 
   return (
     <S.FilterBarContainer>
@@ -55,7 +76,7 @@ const FilterBar: React.FC = () => {
       </S.FilterItemsConteiner>
       <S.MobileNavFirstSegment>
         <S.MenuContainer>
-          <CIcon filename="menu" />
+          <CIcon filename="menu" onClick={() => setMenuIsOpen(!menuIsOpen)} />
           <span>მენიუ</span>
         </S.MenuContainer>
         <S.MobileSearchContainer>
@@ -66,6 +87,29 @@ const FilterBar: React.FC = () => {
           />
         </S.MobileSearchContainer>
       </S.MobileNavFirstSegment>
+      <S.MobileNavSecondSegment>
+        <S.TogglerMobileContainer>
+          <p>{LBP.name}</p>
+          <Switch
+            checked={filterByCurrency === "GEL"}
+            onChange={(e) => setFilterByCurrency(e ? "GEL" : "LBP")}
+          />
+          <p>{GEL.name}</p>
+        </S.TogglerMobileContainer>
+        <S.MobileSorterContainer>
+          <S.SelectContainer>
+            <Select
+              defaultValue='ყველა'
+              options={options}
+            // onChange={{}}
+            />
+          </S.SelectContainer>
+          <Sorter />
+          <Tooltip placement="left" title="ბეთმარკეტის წესები">
+            <CIcon filename="rules" />
+          </Tooltip>
+        </S.MobileSorterContainer>
+      </S.MobileNavSecondSegment>
       <S.TogglerContainer>
         <p>{LBP.name}</p>
         <Switch

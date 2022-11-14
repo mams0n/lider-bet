@@ -1,19 +1,22 @@
-import { Slider } from "antd";
-import styled from "styled-components";
+import { Slider } from 'antd'
+import styled from 'styled-components'
 
 export const ProductsContainer = styled.div`
   width: 100%;
   height: 100vh;
   overflow: auto;
-`;
+`
 
-export const ProductsInner = styled.div``;
+export const ProductsInner = styled.div``
 
 export const RangeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
+`
 
 export const Offers = styled.div`
   display: flex;
@@ -29,7 +32,7 @@ export const Offers = styled.div`
     ::before {
       top: 15%;
       left: -1rem;
-      content: "";
+      content: '';
       width: 5px;
       height: 19px;
       display: block;
@@ -39,20 +42,23 @@ export const Offers = styled.div`
       background-color: #34c5a7;
     }
   }
-`;
+`
 
 export const PriceRange = styled.div`
   width: 500px;
   margin-top: 48px;
   margin-right: 30px;
-`;
+`
 
 export const ItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-`;
+  justify-content: flex-start;
+  @media only screen and (max-width: 1000px) {
+    margin-top: 60px;
+  }
+`
 
-export const CSlider = styled(Slider)``;
+export const CSlider = styled(Slider)``

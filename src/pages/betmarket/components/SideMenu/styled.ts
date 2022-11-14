@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 280px;
   height: 100vh;
   background: #f7f9fc;
-`;
+  @media only screen and (max-width: 1000px) {
+    display: none;
+    transition: all 0.3s ease;
+  }
+`
 
 export const MenuContainer = styled.div`
   box-shadow: 0 3px 6px rgba(46, 81, 164, 0.16);
-
-  .activeMenu {
-    background: red;
-  }
-`;
+`
 
 export const MenuItem = styled.div`
   color: #414141;
@@ -35,7 +35,7 @@ export const MenuItem = styled.div`
       padding: 1px;
     }
   }
-`;
+`
 
 export const MenuItemInner = styled.div`
   position: relative;
@@ -75,7 +75,7 @@ export const MenuItemInner = styled.div`
     position: absolute;
     transition: all 0.1s ease-in-out;
   }
-`;
+`
 
 export const SubMenu = styled.div`
   width: 100%;
@@ -83,4 +83,4 @@ export const SubMenu = styled.div`
   display: none;
   padding: 0 0 0.5rem;
   border-bottom: 1px solid #e3e3e3;
-`;
+`

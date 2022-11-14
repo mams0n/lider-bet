@@ -38,6 +38,7 @@ const Products: React.FC = () => {
         </S.Offers>
         <S.PriceRange>
           <S.CSlider
+            step={0.1}
             range
             tooltipVisible
             value={filterByRange}
