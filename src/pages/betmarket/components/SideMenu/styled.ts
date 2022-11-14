@@ -8,10 +8,52 @@ export const Container = styled.div`
     display: none;
     transition: all 0.3s ease;
   }
-`
 
-export const MenuContainer = styled.div`
-  box-shadow: 0 3px 6px rgba(46, 81, 164, 0.16);
+  .ant-menu {
+    box-shadow: 0 3px 6px rgba(46, 81, 164, 0.16);
+    height: auto;
+    color: #414141;
+    .menuItem:hover {
+      background: #f8f8f8;
+      border-left: 6px solid #005473;
+    }
+
+    .ant-menu-submenu-title {
+      margin: 0 !important;
+      border-top: 1px solid #f8f8f8;
+      :hover {
+        background: #f8f8f8;
+        border-left: 6px solid #005473;
+      }
+    }
+  }
+  .ant-menu-item,
+  .ant-menu-submenu {
+    color: #414141;
+    font-weight: bold;
+    :first-child {
+      margin: 0;
+      margin-bottom: 8px;
+    }
+    :nth-child(2) {
+      margin-top: -8px;
+    }
+
+    :hover {
+      color: #414141;
+    }
+    .ant-menu-title-content {
+      color: #414141;
+    }
+  }
+  .ant-menu-inline .ant-menu-item-selected::after {
+    display: none;
+  }
+  .ant-menu-submenu-open {
+    /* border-left: 6px solid #005473; */
+    :hover {
+    }
+  }
 `
 
 export const MenuItem = styled.div`
@@ -21,7 +63,6 @@ export const MenuItem = styled.div`
   background: #fff;
   transition: all 0.1s ease-in;
   border-left: 0 solid #005473;
-  border-top: 1px solid #f8f8f8;
   && .subMenuIsActive {
     display: flex;
     flex-direction: column;
@@ -46,10 +87,6 @@ export const MenuItemInner = styled.div`
   transition: all 0.1s ease-in;
   z-index: 1;
   padding: 10px;
-  :hover {
-    background: #f8f8f8;
-    border-left: 6px solid #005473;
-  }
   :hover {
     .rightArrow,
     .bottomArrow {

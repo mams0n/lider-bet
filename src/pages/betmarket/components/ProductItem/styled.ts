@@ -180,6 +180,7 @@ export const Button = styled.div`
   justify-content: center;
   text-align: center;
   transition: opacity 0.1s ease-out;
+  padding: 3px;
 `
 
 export const Discount = styled.div`

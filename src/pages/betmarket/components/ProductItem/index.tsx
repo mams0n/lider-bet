@@ -1,6 +1,7 @@
 import React from "react";
 import CIcon from "../../../../components/Icon/Icon";
 import { MarketItem, Discounts, Description } from "../../../../database/types";
+import moment from 'moment'
 import * as S from "./styled";
 
 type ProductItemProps = {
@@ -11,7 +12,6 @@ type ProductItemProps = {
 
 const ProductItem: React.FC<ProductItemProps> = (props) => {
   const { item, discount, description } = props;
-
   return (
     <S.ProductItemContainer>
       <S.ProductItemInner>
@@ -22,7 +22,7 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
           <S.Discount className="discount">
             <S.Date>
               <CIcon filename="clock" />
-              {discount?.end_date.slice(0, -9)}
+              {moment(discount?.end_date).format('MMM-DD HH:mm')}
             </S.Date>
             <S.Percent>-{discount?.percent}%</S.Percent>
           </S.Discount>

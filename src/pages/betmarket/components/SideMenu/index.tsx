@@ -11,7 +11,6 @@ const { tags, menuTags } = offers;
 
 const SideMenu = () => {
   const { filterBySideTags, setFilterBySideTags, menuIsOpen, setMenuIsOpen } = useBetmarketContext();
-  console.log(menuIsOpen, 'davai gamodi')
 
   const onChange = (e: CheckboxChangeEvent, value: number) => {
     setFilterBySideTags((v) =>
@@ -27,7 +26,6 @@ const SideMenu = () => {
     id: tag,
     name: tags[tag]?.name,
   }));
-
   return (
     <S.Container className={menuIsOpen ? 'menuIsOpen' : ''}>
       <Menu
@@ -41,7 +39,7 @@ const SideMenu = () => {
         }
         mode={"inline"}
       >
-        <Menu.Item key={"all"} icon={<CIcon filename="leaderBet" />}>
+        <Menu.Item className="menuItem" key={"all"} icon={<CIcon filename="leaderBet" />}>
           ყველა
         </Menu.Item>
         <Menu.SubMenu
