@@ -35,25 +35,6 @@ const FilterBar: React.FC = () => {
     setFilterBySearch(debouncedSearchValue.toLowerCase());
   }, [debouncedSearchValue]);
 
-  const options = [
-    {
-      value: 'ყველა',
-      label: 'ყველა',
-    },
-    {
-      value: 'top',
-      label: 'TOP',
-    },
-    {
-      value: 'bonus',
-      label: 'BONUS',
-    },
-    {
-      value: 'freespin',
-      label: 'FREESPIN',
-    },
-  ]
-
   return (
     <S.FilterBarContainer>
       <S.FilterItemsConteiner>
@@ -99,15 +80,17 @@ const FilterBar: React.FC = () => {
         <S.MobileSorterContainer>
           <S.SelectContainer>
             <Select
-              defaultValue='ყველა'
-              options={options}
-            // onChange={{}}
+              defaultValue={null}
+              options={[{ value: null, label: 'ყველა' }, ...filterItems.map((item) => ({ value: item.id, label: item.name }))]}
+              onChange={(value) => setFilterByTag(value ? [value] : [])}
             />
           </S.SelectContainer>
           <Sorter />
-          <Tooltip placement="left" title="ბეთმარკეტის წესები">
-            <CIcon filename="rules" />
-          </Tooltip>
+          <S.RulesContainer>
+            <Tooltip placement="left" title="ბეთმარკეტის წესები">
+              <CIcon filename="rules" />
+            </Tooltip>
+          </S.RulesContainer>
         </S.MobileSorterContainer>
       </S.MobileNavSecondSegment>
       <S.TogglerContainer>
@@ -129,7 +112,6 @@ const FilterBar: React.FC = () => {
           <CIcon filename="rules" />
         </Tooltip>
       </S.SearchContainer>
-
     </S.FilterBarContainer>
   );
 };

@@ -47,6 +47,11 @@ export const TogglerContainer = styled.div`
 
 export const FilterItemsConteiner = styled.div`
   font-family: unset !important;
+  .ant-checkbox-wrapper:hover {
+    .ant-checkbox-inner {
+      border: 2px solid #414141;
+    }
+  }
   label {
     @media only screen and (max-width: 1366px) {
       font-size: 13px;
@@ -70,14 +75,28 @@ export const CInput = styled(Input)`
   font-size: 16px;
   border-radius: 100px;
   background: #ffffff;
-
-  &:focus {
-    outline: none;
+  ::placeholder {
+    color: #757b8d;
   }
+
   @media only screen and (max-width: 1000px) {
     flex: 1;
     margin: 0;
     justify-content: flex-end;
+    width: 100%;
+    max-width: 34px;
+    height: 34px;
+    background: #ffffff url(../../../svg/search.png) no-repeat center !important;
+    background-size: auto 75% !important;
+    transition: all 0.1s linear;
+    ::placeholder {
+      color: transparent;
+    }
+    &:focus {
+      outline: none;
+      max-width: 314px !important;
+      background: #fff !important;
+    }
   }
 `
 
@@ -87,6 +106,9 @@ export const SearchContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
+  .ant-input:focus {
+    box-shadow: none !important;
+  }
   @media only screen and (max-width: 1000px) {
     display: none;
   }
@@ -111,20 +133,21 @@ export const MobileNavFirstSegment = styled.div`
     background-color: #e3e8f1;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
+  .ant-input:focus {
+    box-shadow: none !important;
+  }
 `
-
 export const MobileNavSecondSegment = styled.div`
   display: none;
   @media only screen and (max-width: 1000px) {
     border-radius: 0;
-    padding: 8px 16px;
+    padding: 6px 16px;
     display: flex !important;
     top: 0;
     z-index: 10;
     width: 100%;
     display: flex;
     color: #000000;
-    padding: 16px;
     flex-wrap: wrap;
     position: sticky;
     border-radius: 3px;
@@ -203,7 +226,7 @@ export const SelectContainer = styled.div`
     padding: 0;
   }
   @media only screen and (max-width: 1000px) {
-    display: block;
+    display: flex;
     width: 110px;
   }
 `
@@ -214,5 +237,11 @@ export const MobileSorterContainer = styled.div`
     display: flex;
     gap: 20px;
     align-items: center;
+  }
+`
+
+export const RulesContainer = styled.div`
+  @media only screen and (max-width: 1000px) {
+    margin-top: 2px;
   }
 `

@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Menu } from "antd";
+import { Checkbox, Menu, Drawer } from "antd";
 import CIcon from "components/Icon/Icon";
 import { data } from "../../../../database/data";
 import * as S from "./styled";
@@ -26,79 +26,97 @@ const SideMenu = () => {
     id: tag,
     name: tags[tag]?.name,
   }));
-  return (
-    <S.Container className={menuIsOpen ? 'menuIsOpen' : ''}>
-      <Menu
-        onOpenChange={(e) =>
-          setFilterBySideTags(
-            [
-              ...(e.includes("slots") ? slotsArray : []),
-              ...(e.includes("spins") ? spinsArray : []),
-            ].map((i) => i.id)
-          )
-        }
-        mode={"inline"}
+
+  const [slotsExpanded, setSlotsExpanded] = React.useState(false)
+  const [spinsExpanded, setSpinsExpanded] = React.useState(false)
+
+  const menuWrapper = () => {
+    return <Menu
+      onOpenChange={(e) =>
+        setFilterBySideTags(
+          [
+            ...(e.includes("slots") ? slotsArray : []),
+            ...(e.includes("spins") ? spinsArray : []),
+          ].map((i) => i.id)
+        )
+      }
+      mode={"inline"}
+    >
+      <Menu.Item
+        key={"all"}
+        title={'ყველა'}
+        className={!spinsExpanded && !slotsExpanded ? 'activeClass' : 'menuItem'}
+        icon={<CIcon filename="leaderBet" />}
       >
-        <Menu.Item className="menuItem" key={"all"} icon={<CIcon filename="leaderBet" />}>
-          ყველა
-        </Menu.Item>
-        <Menu.SubMenu
-          key={"slots"}
-          icon={<CIcon filename="slots" />}
-          title={"სლოტები"}
-        >
-          {slotsArray.map((item) => {
-            return (
-              <Menu.Item
-                style={{ background: "white", margin: 0, height: "25px" }}
+        ყველა
+      </Menu.Item>
+      <Menu.SubMenu
+        key={"slots"}
+        icon={<CIcon filename="slots" />}
+        title={"სლოტები"}
+        onTitleClick={() => setSlotsExpanded(!slotsExpanded)}
+      >
+        {slotsArray.map((item) => {
+          return (
+            <Menu.Item
+              style={{ background: "white", margin: 0, height: "25px" }}
+            >
+              <Checkbox
+                checked={filterBySideTags.includes(item.id)}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  onChange(e, item.id);
+                }}
+                style={{
+                  color: "#414141",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
               >
-                <Checkbox
-                  checked={filterBySideTags.includes(item.id)}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    onChange(e, item.id);
-                  }}
-                  style={{
-                    color: "#414141",
-                    fontSize: "12px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {item.name}
-                </Checkbox>
-              </Menu.Item>
-            );
-          })}
-        </Menu.SubMenu>
-        <Menu.SubMenu
-          key={"spins"}
-          icon={<CIcon filename="spins" />}
-          title={"სპინ თამაშები"}
-        >
-          {spinsArray.map((item) => {
-            return (
-              <Menu.Item
-                style={{ background: "white", margin: 0, height: "25px" }}
+                {item.name}
+              </Checkbox>
+            </Menu.Item>
+          );
+        })}
+      </Menu.SubMenu>
+      <Menu.SubMenu
+        key={"spins"}
+        icon={<CIcon filename="spins" />}
+        title={"სპინ თამაშები"}
+        onTitleClick={() => setSpinsExpanded(!spinsExpanded)}
+      >
+        {spinsArray.map((item) => {
+          return (
+            <Menu.Item
+              style={{ background: "white", margin: 0, height: "25px" }}
+            >
+              <Checkbox
+                checked={filterBySideTags.includes(item.id)}
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => {
+                  onChange(e, item.id);
+                }}
+                style={{
+                  color: "#414141",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                }}
               >
-                <Checkbox
-                  checked={filterBySideTags.includes(item.id)}
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => {
-                    onChange(e, item.id);
-                  }}
-                  style={{
-                    color: "#414141",
-                    fontSize: "12px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {item.name}
-                </Checkbox>
-              </Menu.Item>
-            );
-          })}
-        </Menu.SubMenu>
-      </Menu>
+                {item.name}
+              </Checkbox>
+            </Menu.Item>
+          );
+        })}
+      </Menu.SubMenu>
+    </Menu>
+  }
+
+  return (
+    <S.Container>
+      <Drawer visible={menuIsOpen} onClose={(() => setMenuIsOpen(false))} placement="left">
+        {menuWrapper()}
+      </Drawer>
+      {menuWrapper()}
     </S.Container>
   );
 };

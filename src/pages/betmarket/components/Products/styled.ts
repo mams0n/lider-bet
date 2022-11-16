@@ -48,6 +48,23 @@ export const PriceRange = styled.div`
   width: 500px;
   margin-top: 48px;
   margin-right: 30px;
+  .ant-tooltip {
+    z-index: 0;
+    margin-top: 8px;
+  }
+  .ant-tooltip-inner {
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    background: #fff;
+    color: #000;
+    padding: 5px;
+    box-shadow: none;
+    font-weight: bold;
+    opacity: 1;
+    ::before {
+      width: 0;
+    }
+  }
 `
 
 export const ItemsContainer = styled.div`

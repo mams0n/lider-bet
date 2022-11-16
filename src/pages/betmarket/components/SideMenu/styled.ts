@@ -10,13 +10,8 @@ export const Container = styled.div`
   }
 
   .ant-menu {
-    box-shadow: 0 3px 6px rgba(46, 81, 164, 0.16);
     height: auto;
     color: #414141;
-    .menuItem:hover {
-      background: #f8f8f8;
-      border-left: 6px solid #005473;
-    }
 
     .ant-menu-submenu-title {
       margin: 0 !important;
@@ -26,6 +21,13 @@ export const Container = styled.div`
         border-left: 6px solid #005473;
       }
     }
+    .activeClass {
+      border-left: 6px solid #005473;
+      background: #f8f8f8;
+    }
+  }
+  .ant-menu-root {
+    box-shadow: 0 3px 6px rgba(46, 81, 164, 0.16);
   }
   .ant-menu-item,
   .ant-menu-submenu {
@@ -49,10 +51,15 @@ export const Container = styled.div`
   .ant-menu-inline .ant-menu-item-selected::after {
     display: none;
   }
+
   .ant-menu-submenu-open {
-    /* border-left: 6px solid #005473; */
-    :hover {
+    .ant-menu-submenu-title {
+      border-left: 6px solid #005473;
+      background: #f8f8f8;
     }
+  }
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background: unset;
   }
 `
 
@@ -87,31 +94,6 @@ export const MenuItemInner = styled.div`
   transition: all 0.1s ease-in;
   z-index: 1;
   padding: 10px;
-  :hover {
-    .rightArrow,
-    .bottomArrow {
-      opacity: 1;
-    }
-  }
-
-  .rightArrow {
-    right: 5%;
-    top: 50%;
-    opacity: 0.7;
-    display: block;
-    position: absolute;
-    transform: translateY(-50%);
-    transition: all 0.1s ease-in-out;
-  }
-  .bottomArrow {
-    transform: translateY(-50%) rotate(90deg);
-    right: 5%;
-    top: 50%;
-    opacity: 0.7;
-    display: block;
-    position: absolute;
-    transition: all 0.1s ease-in-out;
-  }
 `
 
 export const SubMenu = styled.div`

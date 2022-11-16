@@ -76,19 +76,6 @@ body {
         background: #FFF;
         box-shadow: inset 0 0 1px #FFF,inset 0 1px 7px #EBEBEB,0 3px 6px -3px #BBB;
     }
-    .ant-tooltip-inner {
-        border: 1px solid #D9D9D9;
-        border-radius: 3px;
-        background: #fff;
-        color: #000;
-        padding: 5px;
-        box-shadow: none;
-        font-weight: bold;
-        opacity: 1;
-        ::before {
-            width: 0;
-        }
-    }
     .ant-slider-handle.ant-tooltip-open {
         border-color: #63738e;
     }
@@ -132,6 +119,73 @@ body {
         color: #ffffff;
         font-weight: unset;
         background-color: #5495ff;
+    }
+    .ant-menu-submenu-title:hover {
+        .ant-menu-submenu-arrow {
+            color: #414141 !important;
+        }
+    }
+    .ant-drawer-header {
+        display: none;
+    }
+    .ant-drawer-body {
+        padding: 0;
+    }
+    .ant-drawer-content-wrapper {
+        width: 230px !important;
+        .ant-menu {
+            height: auto;
+            color: #414141;
+        }
+        .ant-menu-submenu-title {
+            margin: 0 !important;
+            border-top: 1px solid #f8f8f8;
+            :hover {
+                background: #f8f8f8;
+                border-left: 6px solid #005473;
+            }
+        }
+        .ant-menu-submenu-open {
+            .ant-menu-submenu-title {
+            border-left: 6px solid #005473;
+            background: #f8f8f8;
+            }
+        }
+        .activeClass {
+            border-left: 6px solid #005473;
+            background: #f8f8f8;
+        }
+        .ant-menu-root {
+            box-shadow: 0 3px 6px rgba(46, 81, 164, 0.16);
+        }
+        .ant-menu-item,
+        .ant-menu-submenu {
+            color: #414141;
+            font-weight: bold;
+        :first-child {
+        margin: 0;
+        margin-bottom: 8px;
+        }
+        :nth-child(2) {
+            margin-top: -8px;
+        }
+
+        :hover {
+            color: #414141;
+        }
+        .ant-menu-title-content {
+            color: #414141;
+            }
+        }
+        .ant-menu-inline .ant-menu-item-selected::after {
+            display: none;
+        }
+        .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+            background: unset;
+        }
+        .ant-menu-inline .ant-menu-submenu-title {
+            line-height: 36px;
+        }
     }
 }
 

@@ -13,8 +13,17 @@ const { products } = offers;
 const marketItem = Object.values<MarketItem>(offers.marketItem);
 
 const Products: React.FC = () => {
-  const { items, filterByCurrency, filterByRange, setFilterByRange } =
+  const { items, filterByCurrency, filterByRange, setFilterByRange, filterByTag, filterBySideTags } =
     useBetmarketContext();
+  // const prices = React.useMemo(
+  //   () =>
+  //     marketItem
+  //       .filter(
+  //         (item) => item.currencyId === filterByCurrency && [...filterByTag, ...filterBySideTags].length ? !!item.tags.find((tag) => [...filterByTag, ...filterBySideTags].includes(tag)) : true
+  //       )
+  //       .map((item) => item.discountPrice || item.price),
+  //   [filterByCurrency, filterBySideTags, filterByTag]
+  // );
 
   const prices = React.useMemo(
     () =>
@@ -26,6 +35,7 @@ const Products: React.FC = () => {
 
   const maxPrice = Math.max(...prices);
   const minPrice = Math.min(...prices);
+
   React.useEffect(() => {
     setFilterByRange([minPrice, maxPrice]);
   }, [prices]);
@@ -45,6 +55,7 @@ const Products: React.FC = () => {
             min={minPrice}
             max={maxPrice}
             onChange={(value) => setFilterByRange(value)}
+            getTooltipPopupContainer={(tooltipContainer) => tooltipContainer.parentNode as HTMLElement}
           />
         </S.PriceRange>
       </S.RangeContainer>

@@ -59,40 +59,40 @@ const BetmarketProvider: React.FC = (props) => {
    * @description data manipulations | filtering
    */
   React.useEffect(() => {
-    let filtredItems = marketItem;
+    let filteredItems = marketItem;
 
     /** === @filterbar === */
     if (filterByTag.length) {
-      filtredItems = filtredItems.filter(
+      filteredItems = filteredItems.filter(
         (item) => !!item.tags.find((tag) => filterByTag.includes(tag))
       );
     }
 
     // currency
     if (filterByCurrency.length) {
-      filtredItems = filtredItems.filter(
+      filteredItems = filteredItems.filter(
         (item) => item.currencyId === filterByCurrency
       );
     }
 
     // search
     if (filterBySearch.length) {
-      filtredItems = filtredItems.filter(
+      filteredItems = filteredItems.filter(
         (item) => item.name.toLowerCase().search(filterBySearch) > -1
       );
     }
 
     // sorting
     if (sortBy === "AZ" || sortBy === "ZA") {
-      filtredItems = filtredItems.sort((a, b) =>
+      filteredItems = filteredItems.sort((a, b) =>
         a.name.localeCompare(b.name, "en", { sensitivity: "base" })
       );
-      if (sortBy === "ZA") filtredItems = filtredItems.reverse();
+      if (sortBy === "ZA") filteredItems = filteredItems.reverse();
     }
 
     if (sortBy === "PRICE_DOWN" || sortBy === "PRICE_UP") {
-      filtredItems = filtredItems.sort((a, b) => a.price - b.price);
-      if (sortBy === "PRICE_DOWN") filtredItems = filtredItems.reverse();
+      filteredItems = filteredItems.sort((a, b) => a.price - b.price);
+      if (sortBy === "PRICE_DOWN") filteredItems = filteredItems.reverse();
     }
 
     // filter by range
@@ -100,7 +100,7 @@ const BetmarketProvider: React.FC = (props) => {
       const min = filterByRange[0];
       const max = filterByRange[1];
 
-      filtredItems = filtredItems.filter((item) => {
+      filteredItems = filteredItems.filter((item) => {
         const price = item.discountPrice || item.price;
         return price >= min && price <= max;
       });
@@ -108,12 +108,12 @@ const BetmarketProvider: React.FC = (props) => {
 
     // filter by side tags
     if (filterBySideTags.length) {
-      filtredItems = filtredItems.filter(
-        (item) => !!item.tags.find((tag) => filterBySideTags.includes(tag))
+      filteredItems = filteredItems.filter(
+        (item) => !!item.tags.find((tag) => filterBySideTags ? filterBySideTags.includes(tag) : null)
       );
     }
 
-    setItems(filtredItems);
+    setItems(filteredItems);
   }, [
     filterByTag,
     filterByCurrency,

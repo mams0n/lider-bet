@@ -2,6 +2,7 @@ import React from "react";
 import CIcon from "../../../../components/Icon/Icon";
 import { MarketItem, Discounts, Description } from "../../../../database/types";
 import moment from 'moment'
+import 'moment/locale/ka'
 import * as S from "./styled";
 
 type ProductItemProps = {
@@ -22,7 +23,7 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
           <S.Discount className="discount">
             <S.Date>
               <CIcon filename="clock" />
-              {moment(discount?.end_date).format('MMM-DD HH:mm')}
+              {moment(discount?.end_date).locale('ka').format('MMM-DD HH:mm')}
             </S.Date>
             <S.Percent>-{discount?.percent}%</S.Percent>
           </S.Discount>
