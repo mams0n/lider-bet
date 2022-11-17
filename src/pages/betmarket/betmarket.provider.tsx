@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { data } from "../../database/data";
 import { MarketItem } from "../../database/types";
 
@@ -6,7 +6,7 @@ type FilterByTagType = number[];
 type FilterByCurrencyType = "GEL" | "LBP";
 type FilterBySearchType = string;
 type SortBy = "AZ" | "ZA" | "PRICE_UP" | "PRICE_DOWN";
-type FilterByRangeType = [number, number];
+type FilterByRangeType = [number, number] | undefined;
 type FilterBySideTags = number[];
 type MenuIsOpen = boolean;
 
@@ -22,11 +22,12 @@ export type BetmarketContextType = {
   setFilterBySearch: SetState<FilterBySearchType>;
   sortBy: SortBy;
   setSortBy: SetState<SortBy>;
-  filterByRange: FilterByRangeType;
+  filterByRange?: FilterByRangeType;
   setFilterByRange: SetState<FilterByRangeType>;
   filterBySideTags: FilterBySideTags;
   setFilterBySideTags: SetState<FilterBySideTags>;
   menuIsOpen: MenuIsOpen;
+  prices?: [number, number];
   setMenuIsOpen: SetState<MenuIsOpen>
 };
 
@@ -40,16 +41,15 @@ const offers = data[0];
 const marketItem = Object.values<MarketItem>(offers.marketItem);
 
 const BetmarketProvider: React.FC = (props) => {
-  const [items, setItems] = React.useState<MarketItem[]>([]);
+  const [prices, setPrices] = useState<[number, number]>()
+  const [items, setItems] = React.useState<MarketItem[]>(marketItem);
   const [filterByTag, setFilterByTag] = React.useState<FilterByTagType>([]);
   const [filterByCurrency, setFilterByCurrency] =
     React.useState<FilterByCurrencyType>("GEL");
   const [filterBySearch, setFilterBySearch] =
     React.useState<FilterBySearchType>("");
   const [sortBy, setSortBy] = React.useState<SortBy>("PRICE_DOWN");
-  const [filterByRange, setFilterByRange] = React.useState<FilterByRangeType>([
-    0, 0,
-  ]);
+  const [filterByRange, setFilterByRange] = React.useState<FilterByRangeType>();
   const [filterBySideTags, setFilterBySideTags] =
     React.useState<FilterBySideTags>([]);
   const [menuIsOpen, setMenuIsOpen] =
@@ -95,6 +95,20 @@ const BetmarketProvider: React.FC = (props) => {
       if (sortBy === "PRICE_DOWN") filteredItems = filteredItems.reverse();
     }
 
+    // filter by side tags
+    if (filterBySideTags.length) {
+      filteredItems = filteredItems.filter(
+        (item) => !!item.tags.find((tag) => filterBySideTags.includes(tag))
+      );
+    }
+
+    // prices
+    const purePrices = filteredItems
+      .map((item) => item.discountPrice || item.price).sort((a, b) => a - b)
+    const minPrice = purePrices[0];
+    const maxPrice = purePrices[purePrices.length - 1]
+    setPrices([minPrice, maxPrice])
+
     // filter by range
     if (filterByRange) {
       const min = filterByRange[0];
@@ -104,13 +118,6 @@ const BetmarketProvider: React.FC = (props) => {
         const price = item.discountPrice || item.price;
         return price >= min && price <= max;
       });
-    }
-
-    // filter by side tags
-    if (filterBySideTags.length) {
-      filteredItems = filteredItems.filter(
-        (item) => !!item.tags.find((tag) => filterBySideTags ? filterBySideTags.includes(tag) : null)
-      );
     }
 
     setItems(filteredItems);
@@ -130,6 +137,7 @@ const BetmarketProvider: React.FC = (props) => {
         filterByTag,
         setFilterByTag,
         filterByCurrency,
+        prices,
         setFilterByCurrency,
         filterBySearch,
         setFilterBySearch,

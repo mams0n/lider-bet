@@ -1,7 +1,6 @@
 import { data } from "database/data";
-import { MarketItem } from "database/types";
 import { useBetmarketContext } from "pages/betmarket/betmarket.provider";
-import React from "react";
+import React, { useEffect } from "react";
 import ProductItem from "../ProductItem";
 import * as S from "./styled";
 
@@ -10,35 +9,12 @@ export type ProductsProps = {};
 const offers = data[0];
 const { discounts } = offers;
 const { products } = offers;
-const marketItem = Object.values<MarketItem>(offers.marketItem);
 
 const Products: React.FC = () => {
-  const { items, filterByCurrency, filterByRange, setFilterByRange, filterByTag, filterBySideTags } =
+  const { items, filterByCurrency, prices, filterByRange, setFilterByRange, filterByTag } =
     useBetmarketContext();
-  // const prices = React.useMemo(
-  //   () =>
-  //     marketItem
-  //       .filter(
-  //         (item) => item.currencyId === filterByCurrency && [...filterByTag, ...filterBySideTags].length ? !!item.tags.find((tag) => [...filterByTag, ...filterBySideTags].includes(tag)) : true
-  //       )
-  //       .map((item) => item.discountPrice || item.price),
-  //   [filterByCurrency, filterBySideTags, filterByTag]
-  // );
 
-  const prices = React.useMemo(
-    () =>
-      marketItem
-        .filter((i) => i.currencyId === filterByCurrency)
-        .map((item) => item.discountPrice || item.price),
-    [filterByCurrency]
-  );
-
-  const maxPrice = Math.max(...prices);
-  const minPrice = Math.min(...prices);
-
-  React.useEffect(() => {
-    setFilterByRange([minPrice, maxPrice]);
-  }, [prices]);
+  useEffect(() => () => setFilterByRange(undefined), [filterByTag, filterByCurrency, setFilterByRange])
 
   return (
     <S.ProductsInner>
@@ -51,9 +27,9 @@ const Products: React.FC = () => {
             step={0.1}
             range
             tooltipVisible
-            value={filterByRange}
-            min={minPrice}
-            max={maxPrice}
+            value={filterByRange || [prices?.[0] || 0, prices?.[1] || 0]}
+            min={prices?.[0]}
+            max={prices?.[1]}
             onChange={(value) => setFilterByRange(value)}
             getTooltipPopupContainer={(tooltipContainer) => tooltipContainer.parentNode as HTMLElement}
           />
