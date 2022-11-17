@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Input } from 'antd'
+import styled from "styled-components";
+import { Input } from "antd";
 
 export const FilterBarContainer = styled.div`
   position: sticky;
@@ -30,7 +30,7 @@ export const FilterBarContainer = styled.div`
   svg {
     cursor: pointer;
   }
-`
+`;
 
 export const TogglerContainer = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ export const TogglerContainer = styled.div`
   @media only screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 
 export const FilterItemsConteiner = styled.div`
   font-family: unset !important;
@@ -60,7 +60,7 @@ export const FilterItemsConteiner = styled.div`
   @media only screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 
 export const CInput = styled(Input)`
   width: 100%;
@@ -86,6 +86,7 @@ export const CInput = styled(Input)`
     width: 100%;
     max-width: 34px;
     height: 34px;
+    color: transparent;
     background: #ffffff url(../../../svg/search.png) no-repeat center !important;
     background-size: auto 75% !important;
     transition: all 0.1s linear;
@@ -96,9 +97,10 @@ export const CInput = styled(Input)`
       outline: none;
       max-width: 314px !important;
       background: #fff !important;
+      color: #757b8d;
     }
   }
-`
+`;
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -112,7 +114,7 @@ export const SearchContainer = styled.div`
   @media only screen and (max-width: 1000px) {
     display: none;
   }
-`
+`;
 
 export const MobileNavFirstSegment = styled.div`
   display: none;
@@ -136,7 +138,7 @@ export const MobileNavFirstSegment = styled.div`
   .ant-input:focus {
     box-shadow: none !important;
   }
-`
+`;
 export const MobileNavSecondSegment = styled.div`
   display: none;
   @media only screen and (max-width: 1000px) {
@@ -156,7 +158,7 @@ export const MobileNavSecondSegment = styled.div`
     background-color: #e3e8f1;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
-`
+`;
 
 export const MenuContainer = styled.div`
   display: flex;
@@ -165,14 +167,14 @@ export const MenuContainer = styled.div`
   span {
     margin-top: 2px;
   }
-`
+`;
 
 export const MobileSearchContainer = styled.div`
   display: flex;
   flex: 1;
   margin: 0;
   justify-content: flex-end;
-`
+`;
 
 export const TogglerMobileContainer = styled.div`
   display: flex;
@@ -187,7 +189,7 @@ export const TogglerMobileContainer = styled.div`
   @media only screen and (max-width: 1000px) {
     margin: 0;
   }
-`
+`;
 
 export const SelectContainer = styled.div`
   display: none;
@@ -229,7 +231,7 @@ export const SelectContainer = styled.div`
     display: flex;
     width: 110px;
   }
-`
+`;
 
 export const MobileSorterContainer = styled.div`
   display: none;
@@ -238,10 +240,10 @@ export const MobileSorterContainer = styled.div`
     gap: 20px;
     align-items: center;
   }
-`
+`;
 
 export const RulesContainer = styled.div`
   @media only screen and (max-width: 1000px) {
     margin-top: 2px;
   }
-`
+`;
