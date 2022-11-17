@@ -64,7 +64,9 @@ const BetmarketProvider: React.FC = (props) => {
     /** === @filterbar === */
     if (filterByTag.length) {
       filteredItems = filteredItems.filter(
-        (item) => !!item.tags.find((tag) => filterByTag.includes(tag))
+        (item) => {
+          return filterByTag.every(filter => item.tags.includes(filter))
+        }
       );
     }
 
